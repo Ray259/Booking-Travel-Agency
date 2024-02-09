@@ -16,7 +16,7 @@
     <link href="{{ asset('assets/css/templatemo-woox-travel.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/owl.css') }}">
     <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/test.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/flex-slider.css') }}" rel="stylesheet">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <!-- Fonts -->
@@ -104,20 +104,20 @@
                         <nav class="main-nav">
                             <!-- ***** Logo Start ***** -->
                             <a href="{{ url('/') }}" class="logo">
-                                <img src="assets/images/logo.png" alt="">
+                                <img src="{{ asset('assets/images/logo.png') }}" alt="">
                             </a>
                             <!-- ***** Logo End ***** -->
                             <!-- ***** Menu Start ***** -->
                             <ul class="nav">
-                                <li><a href="index.html" class="active">Home</a></li>
+                                <li><a href="{{ route('home') }}" class="active">Home</a></li>
                                 <li><a href="about.html">About</a></li>
                                 <li><a href="deals.html">Deals</a></li>
                                 @guest
                                     @if (Route::has('login'))
-                                        <li><a href="login.html">Login</a></li>
+                                        <li><a href="{{ route('login') }}">Login</a></li>
                                     @endif
                                     @if (Route::has('register'))
-                                        <li><a href="register.html">Register</a></li>
+                                        <li><a href="{{ route('register') }}">Register</a></li>
                                     @endif
                                 @else
                                 <li class="nav-item dropdown">
@@ -191,6 +191,9 @@
             clearInterval(bannerTimer);
             bannerTimer = setInterval(bannerSwitcher, 5000)
         });
+        $(document).ready(function(){
+  $(".owl-cites-town").owlCarousel();
+});
     </script>
 </body>
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/travelling/about/{id}', [App\Http\Controllers\Travelling\TravellingController::class, 'about'])->name('travelling.about');
+
+
+Route::get('/travelling/reservation/{id}', [App\Http\Controllers\Travelling\TravellingController::class, 'makeReservation'])->name('travelling.reservation');
+
+Route::post('/travelling/reservation/{id}', [App\Http\Controllers\Travelling\TravellingController::class, 'storeReservation'])->name('travelling.reservation.store');
