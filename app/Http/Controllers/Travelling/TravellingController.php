@@ -9,6 +9,7 @@ use App\Models\Reservation\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class TravellingController extends Controller
 {
@@ -16,18 +17,14 @@ class TravellingController extends Controller
     public function about($id)
     {
         $cities = City::select()->orderBy('id', 'asc')->take(5)->where('country_id', $id)->get();
-
         $country = Country::find($id);
-
         $citiesCount = City::select()->where('country_id', $id)->count();
-
         return view('travelling.about', compact('cities', 'country', 'citiesCount'));
     }
 
     public function makeReservation($id)
     {
         $city = City::find($id);
-
         return view('travelling.reservation', compact('city'));
     }
 
@@ -46,13 +43,28 @@ class TravellingController extends Controller
                 'user_id' => Auth::user()->id,
             ]);
             if ($storeRes) {
-                $price = Session::put('price', $totalPrice);
-                $newPrice = Session::get($price);
-                echo "Success";
+                Session::flash('price', $totalPrice);
+                Session::flash('cityname', $city->name);
+                Session::flash('cityimg', $city->image);
+                return Redirect::route('travelling.reservation.success');
             }
         } else {
-            echo "Invalid date";
+            echo 'Invalid date';
         }
-        return view('travelling.reservation', compact('city'));
+    }
+
+    public function success()
+    {
+        if (Session::get('cityname')) {
+            return view('travelling.reservation.success');
+        } else {
+            return response('Page not found', 400);
+        }
+    }
+
+    public function deals()
+    {
+        $cities = City::select()->orderBy('id', 'asc')->take(4)->get();
+        return view('travelling.deals', compact('cities'));
     }
 }

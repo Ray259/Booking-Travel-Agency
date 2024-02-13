@@ -10,7 +10,7 @@ class City extends Model
     use HasFactory;
 
     protected $table = 'cities';
-    protected $fillable = ['name', 'population', 'price', 'nbDays', 'description', 'country-id'];
+    protected $fillable = ['name', 'image', 'price', 'nbDays', 'country-id', 'description'];
 
     public $timestamps = true;
 }

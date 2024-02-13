@@ -29,3 +29,9 @@ Route::get('/travelling/about/{id}', [App\Http\Controllers\Travelling\Travelling
 Route::get('/travelling/reservation/{id}', [App\Http\Controllers\Travelling\TravellingController::class, 'makeReservation'])->name('travelling.reservation');
 
 Route::post('/travelling/reservation/{id}', [App\Http\Controllers\Travelling\TravellingController::class, 'storeReservation'])->name('travelling.reservation.store');
+
+
+Route::get('/travelling/reservation/success', [App\Http\Controllers\Travelling\TravellingController::class, 'success'])->name('travelling.reservation.success');
+
+
+Route::get('/travelling/deals', [App\Http\Controllers\Travelling\TravellingController::class, 'deals'])->name('travelling.deals');
