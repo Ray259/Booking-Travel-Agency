@@ -14,24 +14,21 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::group(['prefix' => '/travelling'], function () {
+    Route::get('/about/{id}', [App\Http\Controllers\Travelling\TravellingController::class, 'about'])->name('travelling.about');
 
-Route::get('/travelling/about/{id}', [App\Http\Controllers\Travelling\TravellingController::class, 'about'])->name('travelling.about');
+    Route::get('/reservation/{id}', [App\Http\Controllers\Travelling\TravellingController::class, 'makeReservation'])->name('travelling.reservation');
 
+    Route::post('/reservation/{id}', [App\Http\Controllers\Travelling\TravellingController::class, 'storeReservation'])->name('travelling.reservation.store');
 
-Route::get('/travelling/reservation/{id}', [App\Http\Controllers\Travelling\TravellingController::class, 'makeReservation'])->name('travelling.reservation');
+    Route::get('/booking-success', [App\Http\Controllers\Travelling\TravellingController::class, 'success'])->name('travelling.success');
 
-Route::post('/travelling/reservation/{id}', [App\Http\Controllers\Travelling\TravellingController::class, 'storeReservation'])->name('travelling.reservation.store');
+    Route::get('/deals', [App\Http\Controllers\Travelling\TravellingController::class, 'deals'])->name('travelling.deals');
+});
 
-
-Route::get('/travelling/reservation/success', [App\Http\Controllers\Travelling\TravellingController::class, 'success'])->name('travelling.reservation.success');
-
-
-Route::get('/travelling/deals', [App\Http\Controllers\Travelling\TravellingController::class, 'deals'])->name('travelling.deals');
+Route::get('/user/bookings', [App\Http\Controllers\Users\UsersController::class, 'booking'])->name('user.bookings');

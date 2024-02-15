@@ -1,43 +1,45 @@
 @extends('layouts.app')
 
 @section('content')
-
-
     <section id="section-1">
         <div class="content-slider">
-            @foreach($countries as $country)
-            <input type="radio" id="banner{{ $country->id }}" class="sec-1-input" name="banner" checked>
+            @foreach ($countries as $country)
+                <input type="radio" id="banner{{ $country->id }}" class="sec-1-input" name="banner" checked>
             @endforeach
             <div class="slider">
 
-            @foreach($countries as $country)
-            <div id="top-banner-{{ $country->id }}" class="banner" style="background-image: url('{{ asset('assets/images/' . $country->image) }}')">
-                    <div class="banner-inner-wrapper header-text">
-                        <div class="main-caption">
-                            <h2>Take a Glimpse Into The Beautiful Country Of:</h2>
-                            <h1>{{ $country->name }}</h1>
-                            <div class="border-button"><a href="{{ route('travelling.about', $country->id) }}">Go There</a></div>
-                        </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="more-info">
-                                        <div class="row">
-                                            <div class="col-lg-3 col-sm-6 col-6">
-                                                <i class="fa fa-user"></i>
-                                                <h4><span>Population:</span><br>{{ $country->population }}</h4>
-                                            </div>
-                                            <div class="col-lg-3 col-sm-6 col-6">
-                                                <i class="fa fa-globe"></i>
-                                                <h4><span>Territory:</span><br>{{ $country->territory }}</h4>
-                                            </div>
-                                            <div class="col-lg-3 col-sm-6 col-6">
-                                                <i class="fa fa-home"></i>
-                                                <h4><span>AVG Price:</span><br>$ {{ $country->avg_price }}</h4>
-                                            </div>
-                                            <div class="col-lg-3 col-sm-6 col-6">
-                                                <div class="main-button">
-                                                    <a href="{{ route('travelling.about', $country->id) }}">Explore More</a>
+                @foreach ($countries as $country)
+                    <div id="top-banner-{{ $country->id }}" class="banner"
+                        style="background-image: url('{{ asset('assets/images/' . $country->image) }}')">
+                        <div class="banner-inner-wrapper header-text">
+                            <div class="main-caption">
+                                <h2>Take a Glimpse Into The Beautiful Country Of:</h2>
+                                <h1>{{ $country->name }}</h1>
+                                <div class="border-button"><a href="{{ route('travelling.about', $country->id) }}">Go
+                                        There</a></div>
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="more-info">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-sm-6 col-6">
+                                                    <i class="fa fa-user"></i>
+                                                    <h4><span>Population:</span><br>{{ $country->population }}</h4>
+                                                </div>
+                                                <div class="col-lg-3 col-sm-6 col-6">
+                                                    <i class="fa fa-globe"></i>
+                                                    <h4><span>Territory:</span><br>{{ $country->territory }}</h4>
+                                                </div>
+                                                <div class="col-lg-3 col-sm-6 col-6">
+                                                    <i class="fa fa-home"></i>
+                                                    <h4><span>AVG Price:</span><br>$ {{ $country->avg_price }}</h4>
+                                                </div>
+                                                <div class="col-lg-3 col-sm-6 col-6">
+                                                    <div class="main-button">
+                                                        <a href="{{ route('travelling.about', $country->id) }}">Explore
+                                                            More</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -46,7 +48,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
 
 
@@ -54,9 +55,10 @@
             <nav>
 
                 <div class="controls">
-                    @foreach($countries as $country)
-                    <label for="banner{{ $country->id }}"><span class="progressbar"><span class="progressbar-fill"></span></span>
-                        <span class="text">{{ $country->id }}</span></label>
+                    @foreach ($countries as $country)
+                        <label for="banner{{ $country->id }}"><span class="progressbar"><span
+                                    class="progressbar-fill"></span></span>
+                            <span class="text">{{ $country->id }}</span></label>
                     @endforeach
                 </div>
 
@@ -68,11 +70,13 @@
     <div class="visit-country">
         <div class="container">
             <div class="row">
-                <div class="col-lg-5">
+                <div class="col-lg-7">
                     <div class="section-heading">
                         <h2>Visit One Of Our Countries Now</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore.</p>
+                        <p>Explore the rich cultural heritage and breathtaking landscapes of our diverse countries. From
+                            vibrant city life to serene natural wonders, there's something for everyone. Embark on a journey
+                            filled with unforgettable experiences.</p>
+
                     </div>
                 </div>
             </div>
@@ -80,37 +84,40 @@
                 <div class="col-lg-8">
                     <div class="items">
                         <div class="row">
-                            @foreach( $countries as $country )
-                            <div class="col-lg-12">
-                                <div class="item">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-sm-5">
-                                            <div class="image">
-                                                <img src="{{ asset('assets/images/' . $country->image) }}" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-8 col-sm-7">
-                                            <div class="right-content">
-                                                <h4>{{ $country->name }}</h4>
-                                                <span>{{ $country->continent }}</span>
-                                                <div class="main-button">
-                                                    <a href="{{ route('travelling.about', $country->id) }}">Explore More</a>
+                            @foreach ($countries as $country)
+                                <div class="col-lg-12">
+                                    <div class="item">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-sm-5">
+                                                <div class="image">
+                                                    <a href="{{ route('travelling.about', $country->id) }}"><img
+                                                            src="{{ asset('assets/images/' . $country->image) }}"
+                                                            alt=""></a>
                                                 </div>
-                                                <p>{{ $country->description }}</p>
-                                                <ul class="info">
-                                                    <li><i class="fa fa-user"></i> {{ $country->population }}</li>
-                                                    <li><i class="fa fa-globe"></i> {{ $country->territory }}</li>
-                                                    <li><i class="fa fa-home"></i> {{ $country->avg_price }}</li>
-                                                </ul>
-                                                <div class="text-button">
-                                                    <a href="{{ route('travelling.about', $country->id) }}">Need Directions ? <i
-                                                            class="fa fa-arrow-right"></i></a>
+                                            </div>
+                                            <div class="col-lg-8 col-sm-7">
+                                                <div class="right-content">
+                                                    <h4 class="">{{ $country->name }}</h4>
+                                                    <span>{{ $country->continent }}</span>
+                                                    <div class="main-button">
+                                                        <a href="{{ route('travelling.about', $country->id) }}">Explore
+                                                            More</a>
+                                                    </div>
+                                                    <p>{{ $country->description }}</p>
+                                                    <ul class="info">
+                                                        <li><i class="fa fa-user"></i> {{ $country->population }}</li>
+                                                        <li><i class="fa fa-globe"></i> {{ $country->territory }}</li>
+                                                        <li><i class="fa fa-home"></i> {{ $country->avg_price }} $</li>
+                                                    </ul>
+                                                    <div class="text-button">
+                                                        <a href="{{ route('travelling.about', $country->id) }}">Need
+                                                            Directions ? <i class="fa fa-arrow-right"></i></a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
                         </div>
                     </div>

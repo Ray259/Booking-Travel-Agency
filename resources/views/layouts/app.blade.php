@@ -17,6 +17,7 @@
     <link href="{{ asset('assets/css/owl.css') }}">
     <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/flex-slider.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/custom.css') }}">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <!-- Fonts -->
@@ -52,23 +53,28 @@
                                         <li><a href="{{ route('register') }}">Register</a></li>
                                     @endif
                                 @else
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }}
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item text-black" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
+                                    <li class="nav-item dropdown">
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
+                                            role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false" v-pre>
+                                            {{ Auth::user()->name }}
                                         </a>
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item text-black" href="{{ route('user.bookings') }}">
+                                                My Bookings
+                                            </a>
+                                            <a class="dropdown-item text-black" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                class="d-none">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </li>
                                 @endguest
                             </ul>
                             <a class='menu-trigger'>
@@ -100,8 +106,8 @@
         </div>
     </footer>
 
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    {{-- <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script> --}}
 
     <script src="{{ asset('assets/js/isotope.min.js') }}"></script>
     <script src="{{ asset('assets/js/owl-carousel.js') }}"></script>
@@ -123,9 +129,9 @@
             clearInterval(bannerTimer);
             bannerTimer = setInterval(bannerSwitcher, 5000)
         });
-        $(document).ready(function(){
-  $(".owl-cites-town").owlCarousel();
-});
+        $(document).ready(function() {
+            $(".owl-cites-town").owlCarousel();
+        });
     </script>
 </body>
 

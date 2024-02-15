@@ -1,0 +1,17 @@
+.cities-list {
+    list-style-type: none; /* Remove default list styles */
+    padding: 0;
+    margin: 0;
+  }
+
+  .cities-list li {
+    display: inline-block; /* Display list items horizontally */
+    margin-right: 10px; /* Add some spacing between items */
+  }
+
+  .cities-list li img {
+    width: 100px; /* Set the width of the images */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px; /* Add rounded corners */
+  }
+

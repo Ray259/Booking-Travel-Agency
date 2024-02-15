@@ -12,8 +12,8 @@ class UsersController extends Controller
 {
     public function booking(){
 
-        $booking = Reservation::where('user_id', Auth::user()->id)->get();
+        $bookings = Reservation::where('user_id', Auth::user()->id)->get();
 
-        return view('user.bookings', compact('booking'));
+        return view('user.bookings', compact('bookings'));
     }
 }

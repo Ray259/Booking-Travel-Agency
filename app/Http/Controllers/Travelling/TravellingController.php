@@ -28,6 +28,8 @@ class TravellingController extends Controller
         return view('travelling.reservation', compact('city'));
     }
 
+
+
     public function storeReservation(Request $req, $id)
     {
         $city = City::find($id);
@@ -46,7 +48,7 @@ class TravellingController extends Controller
                 Session::flash('price', $totalPrice);
                 Session::flash('cityname', $city->name);
                 Session::flash('cityimg', $city->image);
-                return Redirect::route('travelling.reservation.success');
+                return Redirect::route('travelling.success');
             }
         } else {
             echo 'Invalid date';
@@ -56,7 +58,7 @@ class TravellingController extends Controller
     public function success()
     {
         if (Session::get('cityname')) {
-            return view('travelling.reservation.success');
+            return view('travelling.success');
         } else {
             return response('Page not found', 400);
         }

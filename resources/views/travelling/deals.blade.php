@@ -99,7 +99,7 @@
                                 </div>
                                 <p>{{ $city->description }}</p>
                                 <div class="main-button">
-                                    <a href="reservation.html">Make a Reservation</a>
+                                    <a href="{{ route('travelling.reservation', $city->id) }}">Make a Reservation</a>
                                 </div>
                             </div>
                         </div>

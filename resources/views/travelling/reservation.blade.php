@@ -46,7 +46,6 @@
     <div class="reservation-form">
         <div class="container">
             <div class="row">
-
                 <div class="col-lg-12">
                     <form id="reservation-form" name="gs" method="POST" role="search" action="{{ route('travelling.reservation.store', $city->id) }}">
                         @csrf
@@ -90,13 +89,17 @@
                             <div class="col-lg-12">
                                 <fieldset>
                                     <label for="chooseDestination" class="form-label">Choose Your Destination</label>
-                                    <input type="hidden" value={{ $city->name }} name="destination" class="Name" required>
+                                    <input type="hidden" value={{ $city->name }} name="destination" class="Name">
                                     <input disabled type="text" value={{ $city->name }} class="Name" required>
                                 </fieldset>
                             </div>
                             <div class="col-lg-12">
                                 <fieldset>
-                                    <button type="submit" class="main-button">Make Your Reservation Now</button>
+                                    @if(isset(Auth::user()->id))
+                                        <button type="submit" class="main-button">Make Your Reservation Now</button>
+                                    @else
+                                        <a href="{{ route('login') }}" class="main-button">Login to Make Reservation</a>
+                                    @endif
                                 </fieldset>
                             </div>
                         </div>
