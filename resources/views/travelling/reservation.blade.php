@@ -98,7 +98,7 @@
                                     @if(isset(Auth::user()->id))
                                         <button type="submit" class="main-button">Make Your Reservation Now</button>
                                     @else
-                                        <a href="{{ route('login') }}" class="main-button">Login to Make Reservation</a>
+                                        <button><a href="{{ route('login') }}" class="main-button">Login to Make Reservation</a></button>
                                     @endif
                                 </fieldset>
                             </div>

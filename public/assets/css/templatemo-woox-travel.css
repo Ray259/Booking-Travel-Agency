@@ -2312,6 +2312,10 @@ Reservation Page Style
     opacity: 0.8;
 }
 
+.reservation-form #reservation-form button a:visited {
+    color: white;
+}
+
 /*
 ---------------------------------------------
 Responsive Style

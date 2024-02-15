@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => '/travelling'], function () {
@@ -31,4 +31,14 @@ Route::group(['prefix' => '/travelling'], function () {
     Route::get('/deals', [App\Http\Controllers\Travelling\TravellingController::class, 'deals'])->name('travelling.deals');
 });
 
-Route::get('/user/bookings', [App\Http\Controllers\Users\UsersController::class, 'booking'])->name('user.bookings');
+Route::get('/user/bookings', [App\Http\Controllers\Users\UsersController::class, 'booking'])->name('user.bookings')->middleware('auth');
+
+
+
+Route::get('/admin/login', [App\Http\Controllers\Admins\AdminsController::class, 'viewLogin'])->name('admin.login')->middleware('check.auth');
+Route::post('/admin/login', [App\Http\Controllers\Admins\AdminsController::class, 'checkLogin'])->name('admin.login.check');
+
+Route::group(['prefix' => '/admin', 'middleware' => 'auth:admin'], function () {
+    Route::get('/dashboard', [App\Http\Controllers\Admins\AdminsController::class, 'index'])->name('admin.dashboard');
+    Route::post('/logout', [App\Http\Controllers\Admins\AdminsController::class, 'logout'])->name('admin.logout');
+});
