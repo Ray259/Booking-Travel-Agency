@@ -19,27 +19,23 @@
 
 
                 <div class="collapse navbar-collapse" id="navbarText">
-
+                    {{-- Sidebar --}}
                     <ul class="navbar-nav side-nav">
-                        <a class="navbar-brand" href="#"><img src="{{ asset('assets/images/logo.png') }}"
+                        <a class="navbar-brand" href="{{ route('admin.dashboard') }}"><img src="{{ asset('assets/images/logo.png') }}"
                                 alt=""></a>
-                        {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-                            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button> --}}
                         <li class="nav-item">
                             <a class="nav-link" style="margin-left: 20px; margin-top: 20px" href="{{ route('admin.dashboard') }}">Home
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="admins/admins.html" style="margin-left: 20px;">Admins</a>
+                            <a class="nav-link" href="{{ route('admin.dashboard.admins') }}" style="margin-left: 20px;">Admins</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="countries-admins/show-country.html"
+                            <a class="nav-link" href="{{ route('admin.dashboard.countries') }}"
                                 style="margin-left: 20px;">Countries</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="cities-admins/show-cities.html"
+                            <a class="nav-link" href="{{ route('admin.dashboard.cities') }}"
                                 style="margin-left: 20px;">Cities</a>
                         </li>
                         <li class="nav-item">
@@ -48,6 +44,7 @@
                         </li>
                     </ul>
 
+                    {{-- Header --}}
                     @auth('admin')
                         <ul class="navbar-nav ml-md-auto d-md-flex">
                             <li class="nav-item">
@@ -91,3 +88,4 @@
     </div>
     <script type="text/javascript"></script>
 </body>
+

@@ -41,4 +41,24 @@ Route::post('/admin/login', [App\Http\Controllers\Admins\AdminsController::class
 Route::group(['prefix' => '/admin', 'middleware' => 'auth:admin'], function () {
     Route::get('/dashboard', [App\Http\Controllers\Admins\AdminsController::class, 'index'])->name('admin.dashboard');
     Route::post('/logout', [App\Http\Controllers\Admins\AdminsController::class, 'logout'])->name('admin.logout');
+
+    Route::group(['prefix' => '/dashboard'], function () {
+        //Admins
+        Route::get('/all-admins', [App\Http\Controllers\Admins\AdminsController::class, 'allAdmins'])->name('admin.dashboard.admins');
+        Route::get('/create-admins', [App\Http\Controllers\Admins\AdminsController::class, 'createAdminsView'])->name('admin.dashboard.admins.createView');
+        Route::post('/create-admins', [App\Http\Controllers\Admins\AdminsController::class, 'createAdmins'])->name('admin.dashboard.admins.create');
+        Route::post('/delete-admins', [App\Http\Controllers\Admins\AdminsController::class, 'deleteAdmins'])->name('admin.dashboard.admins.delete');
+
+        //Countries
+        Route::get('/all-countries', [App\Http\Controllers\Admins\AdminsController::class, 'allCountries'])->name('admin.dashboard.countries');
+        Route::get('/create-countries', [App\Http\Controllers\Admins\AdminsController::class, 'createCountriesView'])->name('admin.dashboard.countries.createView');
+        Route::post('/create-countries', [App\Http\Controllers\Admins\AdminsController::class, 'createCountries'])->name('admin.dashboard.countries.create');
+        Route::post('/delete-countries', [App\Http\Controllers\Admins\AdminsController::class, 'deleteCountries'])->name('admin.dashboard.countries.delete');
+
+        //Cities
+        Route::get('/all-cities', [App\Http\Controllers\Admins\AdminsController::class, 'allCities'])->name('admin.dashboard.cities');
+        Route::get('/create-cities', [App\Http\Controllers\Admins\AdminsController::class, 'createCitiesView'])->name('admin.dashboard.cities.createView');
+        Route::post('/create-cities', [App\Http\Controllers\Admins\AdminsController::class, 'createCities'])->name('admin.dashboard.cities.create');
+        Route::post('/delete-cities', [App\Http\Controllers\Admins\AdminsController::class, 'deleteCities'])->name('admin.dashboard.cities.delete');
+    });
 });
